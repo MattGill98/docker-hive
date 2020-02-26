@@ -33,6 +33,14 @@ Count number of stations:
   > SELECT station, count(station) AS cnt FROM data GROUP BY station;
 ```
 
+## Example Queries
+
+Get the average temperature for each station in a given month
+
+```
+SELECT station, avg(hourlydrybulbtemperature) FROM data WHERE from_unixtime(unix_timestamp(time), "YYYY-MM") = "2019-12" GROUP BY station;
+```
+
 ## Contributors
 * Ivan Ermilov [@earthquakesan](https://github.com/earthquakesan) (maintainer)
 * Yiannis Mouchakis [@gmouchakis](https://github.com/gmouchakis)
