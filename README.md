@@ -41,6 +41,18 @@ Get the average temperature for each station in a given month
 SELECT station, avg(hourlydrybulbtemperature) FROM data WHERE from_unixtime(unix_timestamp(time), "YYYY-MM") = "2019-12" GROUP BY station;
 ```
 
+Get the average temperature for each station for each month
+
+```
+SELECT station, from_unixtime(unix_timestamp(time), "YYYY-MM") AS month, avg(hourlydrybulbtemperature) FROM data GROUP BY 2, station CLUSTER BY station, month;
+```
+
+Get the average temperature for a given station for each month
+
+```
+SELECT from_unixtime(unix_timestamp(time), "YYYY-MM"), avg(hourlydrybulbtemperature) FROM data WHERE station = "4018016201" GROUP BY 1;
+```
+
 ## Contributors
 * Ivan Ermilov [@earthquakesan](https://github.com/earthquakesan) (maintainer)
 * Yiannis Mouchakis [@gmouchakis](https://github.com/gmouchakis)
