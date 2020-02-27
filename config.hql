@@ -38,15 +38,15 @@ stored as textfile;
 INSERT INTO TABLE data
 SELECT substr(station, length(station) - 4), from_unixtime(unix_timestamp(time, "yyyy-MM-dd'T'HH:mm:ss")), hourlypresentweathertype, hourlydrybulbtemperature, hourlysealevelpressure, hourlyrelativehumidity, hourlywinddirection, hourlywindspeed
 FROM temp_data WHERE report != "SOD  ";
-DROP TABLE temp;
+DROP TABLE temp_data;
 
-CREATE TABLE temp
+CREATE TABLE temp_stations
 (WBAN string, WMO string, callsign string, climatedivisioncode tinyint, ClimateDivisionStateCode tinyint, ClimateDivisionStationCode tinyint, name String, state String, location string, latitude decimal(9,6), longitude decimal(9,6), groundheight decimal(9,6), stationheight int, barometer int, timezone string)
 row format delimited fields terminated by '|' lines terminated by '\n'
 stored as textfile
 tblproperties ("skip.header.line.count"="1");
 
-load data local inpath "stations.txt" overwrite into table temp;
+load data local inpath "stations.txt" overwrite into table temp_stations;
 
 
 DROP TABLE IF EXISTS stations;
@@ -57,6 +57,6 @@ stored as textfile;
 
 INSERT INTO TABLE stations
 SELECT WBAN, name, state, location, latitude, longitude, groundheight
-FROM temp;
+FROM temp_stations;
 
-DROP table temp;
+DROP table temp_stations;
