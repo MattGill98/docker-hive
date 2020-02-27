@@ -15,5 +15,5 @@ stored as textfile;
 
 INSERT INTO TABLE data
 SELECT station, from_unixtime(unix_timestamp(time, "yyyy-MM-dd'T'HH:mm:ss")), hourlypresentweathertype, hourlydrybulbtemperature, hourlysealevelpressure, hourlyrelativehumidity, hourlywinddirection, hourlywindspeed
-FROM temp;
+FROM temp WHERE report != "SOD  ";
 DROP TABLE temp;

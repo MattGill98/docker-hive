@@ -44,7 +44,7 @@ SELECT station, avg(hourlydrybulbtemperature) FROM data WHERE from_unixtime(unix
 Get the average temperature for each station for each month
 
 ```
-SELECT station, from_unixtime(unix_timestamp(time), "YYYY-MM") AS month, avg(hourlydrybulbtemperature) FROM data GROUP BY 2, station CLUSTER BY station, month;
+SELECT station, from_unixtime(unix_timestamp(time), "YYYY-MM") AS month, avg(hourlydrybulbtemperature) FROM data GROUP BY 2, station CLUSTER BY month;
 ```
 
 Get the average temperature for a given station for each month
