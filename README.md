@@ -50,7 +50,7 @@ SELECT station, from_unixtime(unix_timestamp(time), "YYYY-MM") AS month, avg(hou
 Get the average temperature for a given station for each month
 
 ```
-SELECT from_unixtime(unix_timestamp(time), "YYYY-MM"), avg(hourlydrybulbtemperature) FROM data WHERE station = "4018016201" GROUP BY 1;
+SELECT from_unixtime(unix_timestamp(time), "YYYY-MM"), avg(hourlydrybulbtemperature) FROM data WHERE station = "16201" GROUP BY 1;
 ```
 
 Get the nearest 10 stations to a given city
