@@ -53,6 +53,15 @@ Get the average temperature for a given station for each month
 SELECT from_unixtime(unix_timestamp(time), "YYYY-MM"), avg(hourlydrybulbtemperature) FROM data WHERE station = "4018016201" GROUP BY 1;
 ```
 
+Get the nearest 10 stations to a given city
+
+```
+select name, latitude, longitude, SQRT(POW(69.1 * (latitude - result.lat), 2) + POW(69.1 * (result.lng - longitude) * COS(latitude / 57.3), 2)) AS distance
+FROM stations LEFT JOIN
+(SELECT lat, lng FROM cities WHERE city = "London" AND country = "United Kingdom") result
+CLUSTER BY distance LIMIT 10;
+```
+
 ## Contributors
 * Ivan Ermilov [@earthquakesan](https://github.com/earthquakesan) (maintainer)
 * Yiannis Mouchakis [@gmouchakis](https://github.com/gmouchakis)

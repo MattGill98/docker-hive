@@ -4,6 +4,11 @@
   <property>
     <name>hive.groupby.position.alias</name>
     <value>true</value>
-    <description>Allow number aliases in GROUP BY statements</description>
+    <description>Allow number aliases in GROUP BY clauses</description>
+  </property>
+  <property>
+    <name>hive.strict.checks.cartesian.product</name>
+    <value>false</value>
+    <description>To allow joining a table to a query result with a WHERE clause</description>
   </property>
 </configuration>
