@@ -7,5 +7,7 @@ ADD stations.txt .
 ADD climatedata.csv .
 ADD worldcities.csv .
 
+ADD run_tests.sh .
+
 COPY startup.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/startup.sh
